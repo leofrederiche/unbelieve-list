@@ -18,32 +18,39 @@ class App {
 
     async addRespository(event){
         event.preventDefault()
+        document.getElementById('message-error') && document.getElementById('message-error').remove()
 
         this.loading(true)
 
-        let repo = await api.getUserInfo(this.repoName.value)
-        repo = repo.data
+        try {
+            let repo = await api.getUserInfo(this.repoName.value)
+            repo = repo.data
 
-        this.repositories.push({ 
-            name: repo.name,
-            description: repo.description,
-            avatar_url: repo.owner.avatar_url,
-            html_url: repo.html_url
-        })
+            this.repositories.push({ 
+                name: repo.name,
+                description: repo.description,
+                avatar_url: repo.owner.avatar_url,
+                html_url: repo.html_url
+            })
+        } catch {
+            let messageError = document.createElement('p')
+            messageError.setAttribute('id', 'message-error')
+            messageError.appendChild(document.createTextNode('Invalid repository.'))
+
+            this.formRepo.appendChild(messageError)
+        }
 
         this.render()
     }
 
     loading(state) {
         if (state == true){
-            console.log('criou')
             let loadingItem = document.createElement('img')
             loadingItem.setAttribute('src', 'loading.gif')
             loadingItem.setAttribute('id', 'loading')
 
             this.listRepo.appendChild(loadingItem)
         } else {
-            console.log('removeu')
             document.getElementById('loading').remove()
         }
 
@@ -66,7 +73,7 @@ class App {
 
             let linkItem = document.createElement('a')
             linkItem.setAttribute('href', item.html_url)
-            linkItem.appendChild(document.createTextNode('Acessar'))
+            linkItem.appendChild(document.createTextNode('Access'))
 
             let listItem = document.createElement('li')
 
@@ -74,7 +81,6 @@ class App {
             listItem.appendChild(linkItem)
             listItem.appendChild(titleItem)
             listItem.appendChild(descriptionItem)
-            
 
             this.listRepo.appendChild(listItem)
         })

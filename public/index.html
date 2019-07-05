@@ -79,12 +79,36 @@
             margin: 0 auto;
             width: 80px;
         }
+
+        #message-error {
+            position: absolute;
+            margin: 0 auto;
+            top: -200px;
+            background: #ecf0f1;
+            border: 1px solid #c0392b;
+            color: #c0392b;
+            font-weight: bold;
+
+            border-radius: 6px;
+            padding: 10px 15px;
+
+            animation-name: errorMessage;
+            animation-duration: 3s;
+            animation-timing-function: ease-in-out;
+        }
+
+        @keyframes errorMessage {
+            0% { top: -200px; }
+            25% { top: 10vh; }
+            75% { top: 10vh; }
+            100% { top: -200px; }
+        }
     </style>
 </head>
 <body>
     <form id="repo-form">
-        <input id="repo-name" type="text" id="repository-name" placeholder="Qual o respositório?" autocomplete=off>
-        <button type="submit">Adicionar</button>
+        <input id="repo-name" type="text" id="repository-name" placeholder="Ex: leofrederiche/unbelieve-list" autocomplete=off>
+        <button type="submit">Append</button>
     </form>
 
     <ul id="repo-list">
