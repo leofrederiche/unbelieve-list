@@ -46,7 +46,7 @@ class App {
     loading(state) {
         if (state == true){
             let loadingItem = document.createElement('img')
-            loadingItem.setAttribute('src', 'loading.gif')
+            loadingItem.setAttribute('src', './assets/images/loading.gif')
             loadingItem.setAttribute('id', 'loading')
 
             this.listRepo.appendChild(loadingItem)
