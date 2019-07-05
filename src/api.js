@@ -5,11 +5,6 @@ class Api {
         this.baseUrl = 'http://api.github.com/repos/'
     }
 
-    // async getUserInfo(repository) {
-    //     const response = await axios.get(this.baseUrl + repository)
-    //     return response
-    // }
-
     getUserInfo(repository) {
         return axios.get(this.baseUrl + repository)
     }
