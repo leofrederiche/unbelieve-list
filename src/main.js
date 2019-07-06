@@ -73,6 +73,7 @@ class App {
 
             let linkItem = document.createElement('a')
             linkItem.setAttribute('href', item.html_url)
+            linkItem.setAttribute('target', '_blank')
             linkItem.appendChild(document.createTextNode('Access'))
 
             let listItem = document.createElement('li')
